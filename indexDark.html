@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- displays site properly based on user's device -->
+
+  <link rel="icon" type="image/png" sizes="32x32" href="./assets/images/favicon-32x32.png">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+  <title>Frontend Mentor | Browser extensions manager UI</title>
+  <link rel="stylesheet" href="stylesDark.css">
+  <!-- Feel free to remove these styles or customise in your own stylesheet 👍 -->
+  <style>
+    .attribution { font-size: 11px; text-align: center; }
+    .attribution a { color: hsl(228, 45%, 44%); }
+  </style>
+</head>
+<body>
+  <main>
+    <nav>
+      <img id="logo" src="assets/images/logo 1.svg" alt="Extensions logo">
+      <button>
+        <a href="index.html"><img src="assets/images/icon-sun.svg" alt="moon logo"></a>
+      </button>
+    </nav>
+    <header>
+      <h1>Extensions List</h1>
+      <ul>
+        <li><button>All</button></li>
+        <li><button>Active</button></li>
+        <li><button>Inactive</button></li>
+      </ul>
+    </header>
+    <div id="tools">
+    </div>
+  </main>
+  
+
+  
+  
+  
+
+
+  <div class="attribution">
+    Challenge by <a href="https://www.frontendmentor.io?ref=challenge">Frontend Mentor</a>. 
+    Coded by <a href="#">Your Name Here</a>.
+  </div>
+  <script>
+    fetch("data.json")
+  .then(res => res.json())
+  .then(data => {
+    let tools = data; // keep tools editable
+    const container = document.getElementById("tools");
+    const filters = document.querySelectorAll("header ul button");
+
+    function renderTools(filter = "all") {
+      let filtered = tools;
+
+      if (filter === "active") filtered = tools.filter(t => t.isActive);
+      if (filter === "inactive") filtered = tools.filter(t => !t.isActive);
+
+      container.innerHTML = filtered.map(tool => `
+        <div class="tool">
+          <img src="${tool.logo}" alt="${tool.name}">
+
+          <div class="p">
+            <h3>${tool.name}</h3>
+            <p>${tool.description}</p>
+          </div>
+
+          <div class="form-check form-switch">
+            <input 
+              class="form-check-input toggle"
+              type="checkbox"
+              data-name="${tool.name}"
+              ${tool.isActive ? "checked" : ""}
+            >
+          </div>
+
+          <button class="remove-btn" data-name="${tool.name}">
+            Remove
+          </button>
+        </div>
+      `).join("");
+
+      // Toggle ON/OFF
+      container.querySelectorAll(".toggle").forEach(input => {
+        input.addEventListener("change", () => {
+          const name = input.dataset.name;
+          const tool = tools.find(t => t.name === name);
+          tool.isActive = input.checked;
+          renderTools(filter); 
+        });
+      });
+
+      // Remove tool
+      container.querySelectorAll(".remove-btn").forEach(btn => {
+      btn.addEventListener("click", () => {
+        const name = btn.dataset.name;
+        tools = tools.filter(t => t.name !== name);
+        renderTools(filter);
+      });
+    });
+  }
+
+  // Filter buttons
+  filters[0].addEventListener("click", () => renderTools("all"));
+  filters[1].addEventListener("click", () => renderTools("active"));
+  filters[2].addEventListener("click", () => renderTools("inactive"));
+
+  // Initial load
+  renderTools("all");
+});
+const filterButtons = document.querySelectorAll("ul button");
+
+filterButtons.forEach(btn => {
+  btn.addEventListener("click", () => {
+    filterButtons.forEach(b => b.classList.remove("active"));
+    btn.classList.add("active");
+  });
+});
+
+  </script>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
+
+</body>
+</html>
