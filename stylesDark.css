@@ -1,0 +1,216 @@
+
+body{
+    background: #081132;
+}
+
+nav{
+    background: #1F2535;
+    display: flex;
+    justify-content: space-between;
+    width: 850px;
+    margin: 16px auto;
+    padding: 16px;
+    border-radius: 20px;
+}
+nav button{
+    background: #2F354C;
+    width: 40px;
+    height: 40px;
+    border-radius: 10px;
+    border: none;
+    cursor: pointer;
+}
+header{
+    display: flex;
+    justify-content: space-between;
+    margin: 16px auto;
+    width: 850px;
+    position: relative;
+}
+header h1{
+    font-weight:700 ;
+    color: #F7F8FC;
+}
+header li{
+    list-style: none;
+}
+ul{
+    display: flex;
+    justify-content: space-between;
+    gap: 8px;
+    position: absolute;
+    bottom: 0;
+    right: 0;
+}
+ul button{
+    background: #2F354B;
+    border: none;
+    border-radius: 30px;
+    font-size: 14px;
+    padding: 8px 16px;
+    font-weight: 500;
+    box-shadow: hsl(0, 0%, 41%) 0 0 1px ;
+    cursor: pointer;
+    color: #F7F8FC;
+}
+#tools{
+    width: 1160px;
+    margin: 12px auto;
+    margin-left: 45px;
+    display: grid;
+    grid-template-columns: auto auto auto;
+    gap:16px 16px;
+    justify-content: center;
+}
+.tool{
+    width: 250px;
+    height: 180px;
+    box-shadow: hsl(0, 0%, 41%) 0 0 3px ;
+    background: #1F2535;
+    display: inline-flex;
+    flex-wrap: wrap;
+    padding: 20px;
+    border-radius: 20px;
+    margin: 0;
+    position: relative;
+    color: #F7F8FC;
+    border: solid #535969;
+}
+.tool img{
+    width: 48px;
+    height: 48px;
+    display: inline-block;
+    width: 40px;
+    padding-right: 12px;
+    border-radius: 12px;
+}
+.tool h3{
+    font-size: 18px;
+    font-weight: bold;
+    margin-top: 6px;
+    margin-bottom: 4px;
+    padding-bottom: 0;
+}
+.tool .p{
+    width: 160px;
+    margin-right: 0px;
+}
+.tool p{
+    font-size: 14px;
+    font-weight: 300;
+    line-height: 20px;
+    word-wrap: break-word;
+    margin-top: 0px;
+    padding-top: 0;
+}
+.tool button{
+    padding: 6px 14px;
+    margin: 14px;
+    border-radius: 20px;
+    background: #1F2534;
+    font-size: 14px;
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    border: solid #535969;
+    box-shadow: #535969 0 0 1px;
+    cursor: pointer;
+    color: #F7F8FC;
+}
+.tool .form-check {
+  position: absolute;
+  right: 20px;
+  bottom: 20px;
+}
+.tool #p{
+    margin:24px;
+}
+.tool .form-check-input {
+  width: 40px;
+  height: 20px;
+  cursor: pointer;
+}
+
+.tool .form-check-input:checked {
+  background-color: #F55A58;
+  box-shadow: inset #F55A58;
+  transition: 0.3s;
+}
+
+.tool .form-check-input {
+  transition: 0.3s;
+}
+nav button:hover{
+    background: #525866;
+}
+.tool button:hover{
+    background: #DA4941;
+    color: #11052B;
+}
+ul button.active {
+  background: #DA4941;
+  color: #11052B;
+}
+ul button:hover {
+  background: #535A6A;
+  color: #F7F8FC;
+}
+ul button.active:hover {
+  background: #DA4941;
+  color: #11052B;
+}
+@media screen and (max-width:500px){
+    /* === جعل العناصر الرئيسية متجاوبة أصلاً === */
+nav, header {
+    max-width: 850px;
+    width: 100%;
+}
+
+#tools {
+    max-width: 1160px;
+    width: 100%;
+    margin-left: 0;
+    grid-template-columns: repeat(3, 1fr);
+}
+
+/* === ميديا 500px === */
+@media screen and (max-width:500px){
+
+    nav {
+        max-width: 340px;
+        width: 100%;
+    }
+
+    header {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        max-width: 340px;
+        width: 100%;
+        position: static;
+        text-align: center;
+    }
+
+    header h1{
+        margin-bottom: 12px;
+    }
+
+    header ul{
+        position: static;
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        gap: 8px;
+        margin-top: 12px;
+    }
+
+    #tools {
+        grid-template-columns: 1fr;
+        max-width: 340px;
+        width: 100%;
+        margin: 12px auto;
+        margin-left: 130px;
+    }
+}
+
+}
